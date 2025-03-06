@@ -1,4 +1,6 @@
-﻿using MovieApi.Persistence.Context;
+﻿using MovieApi.Application.Features.CQRSDesignPattern.Commands.CategoryCommands;
+using MovieApi.Domain.Entities;
+using MovieApi.Persistence.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
