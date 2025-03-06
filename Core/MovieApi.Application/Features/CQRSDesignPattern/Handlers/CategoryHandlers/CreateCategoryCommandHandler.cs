@@ -27,5 +27,6 @@ namespace MovieApi.Application.Features.CQRSDesignPattern.Handlers.CategoryHandl
 			await _context.SaveChangesAsync();
 			return category.CategoryId;
 		}
+
 	}
 }
