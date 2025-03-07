@@ -1,5 +1,5 @@
 ﻿using MovieApi.Application.Features.CQRSDesignPattern.Commands.CategoryCommands;
-using MovieApi.Domain.Entities;
+using MovieApi.Application.Features.CQRSDesignPattern.Commands.MovieCommands;
 using MovieApi.Persistence.Context;
 using System;
 using System.Collections.Generic;
@@ -9,22 +9,20 @@ using System.Threading.Tasks;
 
 namespace MovieApi.Application.Features.CQRSDesignPattern.Handlers.CategoryHandlers
 {
-    public class CreateCategoryCommandHandler
+    public class UpdateCategoryCommandHandler
     {
-        private readonly MovieContext _context;
+		private readonly MovieContext _context;
 
-		public CreateCategoryCommandHandler(MovieContext context)
+		public UpdateCategoryCommandHandler(MovieContext context)
 		{
 			_context = context;
 		}
-		public async Task Handle(CreateCategoryCommand command)
+
+		public async Task Handle(UpdateCategoryCommand command)
 		{
-			_context.Categories.Add(new Category
-			{
-				CategoryName = command.CategoryName
-			});
+			var value = await _context.Categories.FindAsync(command.CategoryId);
+			value.CategoryName = command.CategoryName;
 			await _context.SaveChangesAsync();
 		}
-
 	}
 }
